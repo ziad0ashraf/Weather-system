@@ -13,7 +13,7 @@ if(localStorage.getItem('emailContainer')){
 };
 
 
-async function getData(searchCity,){
+async function getData(searchCity){
     let data = await fetch (`https://api.weatherapi.com/v1/forecast.json?key=4c20e5e094d74daea77203858241206&q=${searchCity}&days=3`)
     let result = await data.json()
     console.log(result);
@@ -21,7 +21,6 @@ async function getData(searchCity,){
     displayDay2(result.forecast.forecastday);
     displayDay3(result.forecast.forecastday);
     }
-    getData('alex')
     
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -36,7 +35,7 @@ btnSearch.addEventListener('click',function() {
 })
         
 
-function displayNow(data,result,forecastDay){
+function displayNow(data,result){
     let cartona=``
     let date = new Date(result.last_updated);
     // console.log(new Date(result.last_updated))
@@ -100,12 +99,13 @@ function displayDay2(forecastDay) {
         }
         
         
-        // navigator.geolocation.getCurrentPosition((pos) => {
-        //     myFunction(pos.coords.latitude, pos.coords.longitude);
-        //   });
+        navigator.geolocation.getCurrentPosition(pos=> {
+            let lon=pos.coords.latitude
+            let lat=pos.coords.longitude
+            getData(`${lon},${lat}`);
+          });
         
 
-    
 
 
 subscribeBtn.addEventListener('click',function addEmail(){
