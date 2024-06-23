@@ -21,6 +21,7 @@ async function getData(searchCity){
     displayDay2(result.forecast.forecastday);
     displayDay3(result.forecast.forecastday);
     }
+    getData("alex")
     
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -68,15 +69,15 @@ function displayDay2(forecastDay) {
                 <div class="header">${days[new Date(forecastDay[1].date).getDay()]}</div>
                 <div class="my-4"><img src="https:${forecastDay[1].day.condition.icon}"</div>
                 <div class="d-flex flex-column gap-5">
-                <div>${forecastDay[1].day.maxtemp_c}</div>
-                <div>${forecastDay[1].day.mintemp_c}</div>
+                <div>${forecastDay[1].day.maxtemp_c}<sup>o</sup>C</div>
+                <div>${forecastDay[1].day.mintemp_c}<sup>o</sup>C</div>
                 <div>${forecastDay[1].day.condition.text}</div>  
                 </div>
             </div>  
         </div>
 
         `
-    document.getElementById('day2').innerHTML+= cartona
+    document.getElementById('day2').innerHTML= cartona
     }
     function displayDay3(forecastDay) {
     let cartona = "";
@@ -87,15 +88,15 @@ function displayDay2(forecastDay) {
                     <div class="header">${days[new Date(forecastDay[2].date).getDay()]}</div>
                 <div class="my-4"><img src="https:${forecastDay[2].day.condition.icon}"</div>
                 <div class="d-flex flex-column gap-5">
-                <div>${forecastDay[2].day.maxtemp_c}</div>
-                <div>${forecastDay[2].day.mintemp_c}</div>
+                <div>${forecastDay[2].day.maxtemp_c}<sup>o</sup>C</div>
+                <div>${forecastDay[2].day.mintemp_c}<sup>o</sup>C</div>
                 <div>${forecastDay[2].day.condition.text}</div>  
                 </div>
                 </div>  
         </div>
         
         `
-        document.getElementById('day3').innerHTML+= cartona
+        document.getElementById('day3').innerHTML= cartona
         }
         
         
@@ -108,33 +109,33 @@ function displayDay2(forecastDay) {
 
 
 
-subscribeBtn.addEventListener('click',function addEmail(){
-    if(flag){
-        let newEmail={
-            email:EmailInput.value
-        }
-        emailContainer.push(newEmail)
-        localStorage.setItem('emailContainer',JSON.stringify(emailContainer))
-        greenAlert.classList.remove('d-none')
-        redAlert.classList.add('d-none')
-    }else{
-        redAlert.classList.remove('d-none')
-        greenAlert.classList.add('d-none')
-    }
-})
+// subscribeBtn.addEventListener('click',function addEmail(){
+//     if(flag){
+//         let newEmail={
+//             email:EmailInput.value
+//         }
+//         emailContainer.push(newEmail)
+//         localStorage.setItem('emailContainer',JSON.stringify(emailContainer))
+//         greenAlert.classList.remove('d-none')
+//         redAlert.classList.add('d-none')
+//     }else{
+//         redAlert.classList.remove('d-none')
+//         greenAlert.classList.add('d-none')
+//     }
+// })
 
-function validation(valid) {
-    let validate={
-        EmailInput:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    }
-    if(validate[valid.id].test(valid.value)){
-        EmailInput.style.border="4px green solid"
-        flag=true;
-        return true
-    }else{
-        EmailInput.style.border="4px red solid"
-        flag= false;
-        return false
-    }
+// function validation(valid) {
+//     let validate={
+//         EmailInput:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+//     }
+//     if(validate[valid.id].test(valid.value)){
+//         EmailInput.style.border="4px green solid"
+//         flag=true;
+//         return true
+//     }else{
+//         EmailInput.style.border="4px red solid"
+//         flag= false;
+//         return false
+//     }
 
-}
+// }
